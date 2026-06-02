@@ -13,7 +13,7 @@ const ASH_PERSONALITY = {
     "That sounds uncomfortable — let's work through this together. 💙",
   ],
   noMatch: "I want to help, but I need a bit more information about what you're experiencing. Could you describe your symptoms in more detail? For example, where exactly is the pain, when did it start, and how severe is it on a scale of 1 to 10?",
-  disclaimer: "\n\n*I'm Ash, an AI healthcare assistant. The information I provide is for general guidance only and is not a substitute for professional medical advice, diagnosis, or treatment. Please see a qualified doctor for proper evaluation. 💙*",
+  disclaimer: "\n\n⚠️ *I'm Ash, an AI healthcare assistant and not a substitute for professional medical care.*",
   seekCare: "Please don't hesitate to see a doctor if your symptoms are severe, worsening, or worrying you.",
 };
 
