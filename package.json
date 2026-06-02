@@ -1,0 +1,13 @@
+{
+  "name": "medicare-ai-agent",
+  "version": "1.0.0",
+  "description": "MediCare AI Agent powered by Gemini",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
