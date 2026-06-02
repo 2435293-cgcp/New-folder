@@ -557,10 +557,10 @@
       <div id="welcome">
         <div class="welcome-icon">🌿</div>
         <div class="welcome-title">Hello, I'm Ash</div>
-        <div class="welcome-tagline">Smart Healthcare Guidance, Online or Offline.</div>
+        <div class="welcome-tagline">Your AI Healthcare Assistant — Online or Offline.</div>
         <div class="welcome-desc">
           I can help with symptoms, medicines, first aid, and general health information.
-          Ask me anything health-related — I'm here for you 24/7.
+          Ask me anything health-related — I'm available 24/7.
         </div>
         <div class="chips-grid" id="welcome-chips"></div>
       </div>
@@ -679,10 +679,10 @@ async function checkStatus() {
 
     if (data.mode === 'online') {
       modePill.className = 'online';
-      modeText.textContent = '🟢 Online — Gemini AI';
+      modeText.textContent = 'Online · Gemini AI';
     } else {
       modePill.className = 'offline';
-      modeText.textContent = '🟡 Offline — Local KB';
+      modeText.textContent = 'Offline · Local KB';
     }
     modePill.style.display = 'flex';
 
@@ -750,7 +750,7 @@ function activateChat(showGreeting) {
   if (showGreeting && messages.querySelectorAll('.msg').length === 0) {
     welcome.classList.add('hidden');
     appendBotMessage(
-      `Hello! I'm **${config.name}**, your AI healthcare assistant from **${config.org}**. 💙\n\nI can help you with:\n• Understanding symptoms and possible causes\n• Home care suggestions and warning signs\n• Medicine information\n• First aid guidance\n• When to seek medical care\n\nHow are you feeling today? Share your symptoms and I'll do my best to help.`,
+      `Hello, I'm **${config.name}**, your healthcare assistant. I can help with symptoms, medicines, first aid, and general health information. 💙\n\nI can assist you with:\n• Understanding symptoms and possible causes\n• Medicine information, dosages, and warnings\n• Step-by-step first aid guidance\n• General health and wellness advice\n• When to seek emergency or professional care\n\nHow are you feeling today? Describe your symptoms or ask any health question.`,
       'local', 0, false
     );
   }

@@ -1,7 +1,8 @@
 'use strict';
-const matcher = require('./symptom_matcher');
-const detector = require('./emergency_detector');
-const kb = require('../data/medical_kb.json');
+const matcher    = require('./symptom_matcher');
+const detector   = require('./emergency_detector');
+const fuseSearch = require('./fuse_search');   // Fuse.js fallback for zero-match queries
+const kb         = require('../data/medical_kb.json');
 
 const ASH_PERSONALITY = {
   intros: [
@@ -188,6 +189,102 @@ function buildCrampsDehydrationResponse(extractedSymptoms) {
   return lines.join('\n');
 }
 
+// ---------------------------------------------------------------------------
+// buildFuseOnlyResponse — builds a response from Fuse.js category results
+// when the custom symptom_matcher returned zero matches.
+// Fuse results shape: [{ category, id, score }]
+// We adapt them to the match shape expected by buildCategorySection.
+// ---------------------------------------------------------------------------
+function buildFuseOnlyResponse(text, fuseResults) {
+  if (!fuseResults || fuseResults.length === 0) {
+    return [pickIntro(text), '', ASH_PERSONALITY.noMatch].join('\n');
+  }
+
+  // Convert Fuse result shape → match shape used by buildCategorySection
+  const adaptedMatches = fuseResults.map(r => ({
+    category:   r.category,
+    categoryId: r.id,
+    confidence: r.score,
+    score:      r.score,
+  }));
+
+  const lines = [pickIntro(text), ''];
+  lines.push(buildCategorySection(adaptedMatches[0], true));
+
+  if (adaptedMatches.length > 1) {
+    lines.push('---'); lines.push('');
+    lines.push(buildCategorySection(adaptedMatches[1], false));
+  }
+
+  const primary = adaptedMatches[0].category;
+  if (primary && primary.when_to_see_doctor) {
+    lines.push('**When to see a doctor:**');
+    lines.push(primary.when_to_see_doctor);
+    lines.push('');
+  }
+
+  const followUps = primary && primary.follow_up_questions ? primary.follow_up_questions.slice(0, 3) : [];
+  if (followUps.length > 0) {
+    lines.push('**To help me give you better guidance:**');
+    followUps.forEach((q, i) => lines.push(`${i + 1}. ${q}`));
+    lines.push('');
+  }
+
+  return lines.join('\n');
+}
+
+// ---------------------------------------------------------------------------
+// buildMedicineResponse — formats a structured response for medicine queries.
+// Called when fuseSearch.searchMedicines() finds a high-confidence hit.
+// ---------------------------------------------------------------------------
+function buildMedicineResponse(medicine) {
+  const lines = [];
+
+  lines.push(`💊 **${medicine.name}**${medicine.generic_name && medicine.generic_name !== medicine.name ? ` *(${medicine.generic_name})*` : ''}`);
+  lines.push('');
+
+  if (medicine.category) {
+    lines.push(`**Category:** ${medicine.category}`);
+    lines.push('');
+  }
+
+  if (medicine.uses && medicine.uses.length > 0) {
+    lines.push('**Used for:**');
+    lines.push(formatList(medicine.uses, 6));
+    lines.push('');
+  }
+
+  if (medicine.available_forms && medicine.available_forms.length > 0) {
+    lines.push(`**Available as:** ${medicine.available_forms.join(', ')}`);
+    lines.push('');
+  }
+
+  if (medicine.dosage_note) {
+    lines.push('**Dosage guidance:**');
+    lines.push(medicine.dosage_note);
+    lines.push('');
+  }
+
+  if (medicine.common_side_effects && medicine.common_side_effects.length > 0) {
+    lines.push('**Common side effects:**');
+    lines.push(formatList(medicine.common_side_effects, 5));
+    lines.push('');
+  }
+
+  if (medicine.warnings && medicine.warnings.length > 0) {
+    lines.push('**Important warnings:**');
+    lines.push(formatList(medicine.warnings, 5));
+    lines.push('');
+  }
+
+  if (medicine.prescription_required === true) {
+    lines.push('⚕️ **Prescription required** — do not use without a doctor\'s prescription.');
+    lines.push('');
+  }
+
+  return lines.join('\n');
+}
+
 function buildGenericResponse(text, matches, extractedSymptoms) {
   if (!matches || matches.length === 0) {
     return [pickIntro(text), '', ASH_PERSONALITY.noMatch].join('\n');
@@ -239,31 +336,78 @@ function buildResponse(text) {
   const emergency = detector.detect(text);
   const { matches, extractedSymptoms } = matcher.match(text);
 
+  // Always try medicine search when the query looks like a medicine question
+  // ("tell me about X", "what is X", "dosage for X"), regardless of whether
+  // the symptom_matcher found any category matches.
+  const looksLikeMedicineQuery = fuseSearch.isMedicineQuery(text);
+  let fuseMatches   = [];
+  let fuseMedicines = looksLikeMedicineQuery ? fuseSearch.searchMedicines(text, 1) : [];
+
+  if (matches.length === 0 && !fuseMedicines.length) {
+    fuseMatches   = fuseSearch.searchCategories(text, 2);
+    fuseMedicines = fuseSearch.searchMedicines(text, 1);
+  }
+
   let responseBody = '';
+  let confidence   = 0;
 
   if (emergency) {
     responseBody = buildEmergencyBlock(emergency);
-    if (matches.length > 0) {
-      const specialResponse = buildSpecialCombinationResponse(extractedSymptoms, matches, text);
+    // Supplement with symptom context if available
+    const contextMatches = matches.length > 0 ? matches : fuseMatches.map(r => ({
+      category: r.category, categoryId: r.id, confidence: r.score, score: r.score,
+    }));
+    if (contextMatches.length > 0) {
+      const specialResponse = buildSpecialCombinationResponse(extractedSymptoms, contextMatches, text);
       if (specialResponse) {
         responseBody += '\n\n---\n\n' + specialResponse;
-      } else if (matches[0].category) {
+      } else if (contextMatches[0].category) {
         responseBody += '\n\n---\n\n**Additional context about your symptoms:**\n\n';
-        responseBody += buildCategorySection(matches[0], false);
+        responseBody += buildCategorySection(contextMatches[0], false);
       }
     }
-  } else {
+    confidence = 100;
+
+  } else if (matches.length > 0) {
+    // Custom symptom_matcher found results — use the primary response pipeline
     const specialResponse = buildSpecialCombinationResponse(extractedSymptoms, matches, text);
     responseBody = specialResponse || buildGenericResponse(text, matches, extractedSymptoms);
+    confidence   = matches[0].confidence;
+
+  } else if (fuseMedicines.length > 0) {
+    // Medicine query — "tell me about paracetamol", "what is ibuprofen", etc.
+    // Prefer medicine results when the medicine Fuse match is the top hit and
+    // either no category matched or the category score is lower.
+    const medScore = fuseSearch.searchMedicines(text, 1);   // already computed above
+    const catScore = fuseMatches.length > 0 ? fuseMatches[0].score : 0;
+    const med      = fuseMedicines[0];
+
+    // Use medicine response when there's no strong category match competing
+    if (catScore < 55 || !fuseMatches.length) {
+      responseBody = [pickIntro(text), '', buildMedicineResponse(med)].join('\n');
+      confidence   = 80; // medicine found — high confidence
+    } else {
+      responseBody = buildFuseOnlyResponse(text, fuseMatches);
+      confidence   = fuseMatches[0].score;
+    }
+
+  } else if (fuseMatches.length > 0) {
+    // Fuse.js found a relevant KB category — use it
+    responseBody = buildFuseOnlyResponse(text, fuseMatches);
+    confidence   = fuseMatches[0].score;
+
+  } else {
+    // Nothing matched — return the helpful clarification prompt
+    responseBody = buildGenericResponse(text, [], extractedSymptoms);
+    confidence   = 0;
   }
 
   if (!emergency && detector.isUrgent(text)) {
     responseBody += '\n\n' + ASH_PERSONALITY.seekCare;
   }
 
-  const reply = responseBody + ASH_PERSONALITY.disclaimer;
+  const reply   = responseBody + ASH_PERSONALITY.disclaimer;
   const sources = matches.map(m => m.category ? m.category.name : m.categoryId);
-  const confidence = matches.length > 0 ? matches[0].confidence : 0;
 
   return {
     reply, source: 'local', emergency, matches, confidence, extractedSymptoms, sources,
