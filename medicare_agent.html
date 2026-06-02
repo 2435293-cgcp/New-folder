@@ -41,37 +41,62 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
-    /* ── Animated Background Orbs ──────────────────────────────── */
+    /* ── Background: photo + animated layers ──────────────────── */
     #bg {
       position: fixed; inset: 0; z-index: 0;
       overflow: hidden; pointer-events: none;
     }
+
+    /* Actual background image */
+    #bg-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: saturate(0.6) brightness(0.35);
+      transform: scale(1.04);
+      animation: bgKen 30s ease-in-out infinite alternate;
+    }
+    @keyframes bgKen {
+      from { transform: scale(1.04) translate(0,0); }
+      to   { transform: scale(1.10) translate(-1%,-1%); }
+    }
+
+    /* Dark gradient vignette over photo */
+    #bg-vignette {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(3,7,18,0.75) 100%),
+        linear-gradient(180deg, rgba(3,7,18,0.55) 0%, rgba(3,7,18,0.15) 40%, rgba(3,7,18,0.65) 100%);
+    }
+
+    /* Floating color orbs blended over the photo */
     .orb {
       position: absolute; border-radius: 50%;
-      filter: blur(90px); opacity: 0.38;
+      filter: blur(90px); mix-blend-mode: screen;
     }
     .orb-1 {
-      width: 650px; height: 650px;
-      background: radial-gradient(circle, #4f46e5 0%, #7c3aed 100%);
-      top: -220px; left: -180px;
+      width: 600px; height: 600px; opacity: 0.22;
+      background: radial-gradient(circle, #4f46e5, #7c3aed);
+      top: -200px; left: -160px;
       animation: float1 26s ease-in-out infinite;
     }
     .orb-2 {
-      width: 520px; height: 520px;
-      background: radial-gradient(circle, #0891b2 0%, #0e7490 100%);
-      top: -120px; right: -120px;
+      width: 480px; height: 480px; opacity: 0.18;
+      background: radial-gradient(circle, #0891b2, #0e7490);
+      top: -100px; right: -100px;
       animation: float2 32s ease-in-out infinite;
     }
     .orb-3 {
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, #7c3aed 0%, #a855f7 100%);
+      width: 450px; height: 450px; opacity: 0.2;
+      background: radial-gradient(circle, #7c3aed, #a855f7);
       bottom: -60px; right: 80px;
       animation: float3 22s ease-in-out infinite;
     }
     .orb-4 {
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, #059669 0%, #0d9488 100%);
-      bottom: -120px; left: 160px;
+      width: 400px; height: 400px; opacity: 0.15;
+      background: radial-gradient(circle, #059669, #0d9488);
+      bottom: -100px; left: 160px;
       animation: float4 28s ease-in-out infinite;
     }
     @keyframes float1 {
@@ -240,6 +265,27 @@
     .field input::placeholder { color: rgba(148,163,184,0.4); font-size: 13px; }
     .field textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 
+    /* ── Settings tabs ──────────────────────────────────────────── */
+    .tabs {
+      display: flex; gap: 4px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-md); padding: 4px;
+    }
+    .tab-btn {
+      flex: 1; padding: 7px 12px; border: none; border-radius: 9px;
+      font-family: var(--font); font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: all .2s ease;
+      background: transparent; color: var(--text-muted);
+    }
+    .tab-btn.active {
+      background: rgba(99,102,241,0.25);
+      color: var(--text);
+      box-shadow: 0 2px 8px rgba(99,102,241,0.2);
+    }
+    .tab-panel { display: none; flex-direction: column; gap: 14px; }
+    .tab-panel.active { display: flex; }
+
     .settings-actions { display: flex; justify-content: flex-end; gap: 12px; }
 
     .btn {
@@ -259,11 +305,79 @@
       border: 1px solid rgba(129,140,248,0.35); color: #fff;
       box-shadow: 0 4px 18px rgba(99,102,241,0.4);
     }
-    .btn-save:hover {
-      box-shadow: 0 6px 28px rgba(99,102,241,0.6);
-      transform: translateY(-1px);
-    }
+    .btn-save:hover  { box-shadow: 0 6px 28px rgba(99,102,241,0.6); transform: translateY(-1px); }
     .btn-save:active { transform: translateY(0); }
+
+    .btn-train {
+      background: linear-gradient(135deg, #059669, #0d9488);
+      border: 1px solid rgba(16,185,129,0.35); color: #fff;
+      box-shadow: 0 4px 18px rgba(16,185,129,0.3);
+    }
+    .btn-train:hover { box-shadow: 0 6px 28px rgba(16,185,129,0.5); transform: translateY(-1px); }
+
+    /* KB entry list */
+    #kb-list {
+      max-height: 200px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .kb-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r-sm); font-size: 12.5px; gap: 10px;
+    }
+    .kb-item-q { flex: 1; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .kb-item-cat {
+      font-size: 11px; padding: 2px 8px; border-radius: var(--r-full);
+      background: rgba(99,102,241,0.18); color: #a5b4fc; flex-shrink: 0;
+    }
+    .kb-item-del {
+      background: none; border: none; cursor: pointer;
+      color: rgba(248,113,113,0.7); font-size: 15px; flex-shrink: 0;
+      transition: color .2s;
+    }
+    .kb-item-del:hover { color: #f87171; }
+
+    .kb-count {
+      font-size: 11.5px; color: var(--text-muted);
+      text-align: right; margin-top: -4px;
+    }
+
+    /* ── Category select ────────────────────────────────────────── */
+    #train-cat {
+      width: 100%;
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--r-md);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13.5px;
+      padding: 10px 36px 10px 14px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23818cf8' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: border-color .22s, box-shadow .22s;
+    }
+    #train-cat:focus {
+      border-color: rgba(129,140,248,0.55);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.13);
+    }
+    #train-cat option {
+      background: #111827;
+      color: #e2e8f0;
+      padding: 8px 12px;
+      font-size: 13.5px;
+    }
+    #train-cat option:hover,
+    #train-cat option:checked {
+      background: #1e2a4a;
+      color: #a5b4fc;
+    }
 
     /* ── Chat ───────────────────────────────────────────────────── */
     #chat-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
@@ -447,6 +561,19 @@
     }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+    /* ── Source badge on messages ───────────────────────────────── */
+    .msg-source {
+      font-size: 10.5px; margin-top: 5px; display: flex;
+      gap: 5px; align-items: center;
+    }
+    .msg.user .msg-source { justify-content: flex-end; }
+    .badge {
+      padding: 2px 7px; border-radius: var(--r-full);
+      font-size: 10.5px; font-weight: 600; letter-spacing: .03em;
+    }
+    .badge-gemini { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+    .badge-local  { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+
     /* ── Responsive ─────────────────────────────────────────────── */
     @media (max-width: 600px) {
       .field-row { grid-template-columns: 1fr; }
@@ -459,8 +586,10 @@
 </head>
 <body>
 
-<!-- ── Animated background orbs ───────────────────────────────────── -->
+<!-- ── Background: photo + vignette + floating orbs ───────────────── -->
 <div id="bg">
+  <div id="bg-img"></div>
+  <div id="bg-vignette"></div>
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
@@ -474,8 +603,8 @@
     <div class="logo-area">
       <div class="logo">🏥</div>
       <div class="header-text">
-        <div class="title">MediCare AI Agent</div>
-        <div class="subtitle">Medical &amp; Pharma Assistant &bull; Powered by Gemini</div>
+        <div class="title" id="header-title">MediCare AI Agent</div>
+        <div class="subtitle" id="header-subtitle">Medical &amp; Pharma Assistant &bull; Powered by Gemini</div>
       </div>
     </div>
     <div class="header-right">
@@ -492,28 +621,76 @@
     <div id="settings-panel">
 
       <div class="settings-header">
-        <div class="settings-title">⚙&nbsp; Configure Agent</div>
+        <div class="settings-title">⚙&nbsp; Agent Settings</div>
       </div>
 
-      <div class="field-row">
-        <div class="field">
-          <label>Organization / Clinic name</label>
-          <input id="inp-org" type="text" placeholder="MediCare Organization" />
+      <!-- Tab switcher -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="configure">⚙ Configure</button>
+        <button class="tab-btn"        data-tab="train">🧠 Train AI</button>
+      </div>
+
+      <!-- Tab: Configure -->
+      <div class="tab-panel active" id="tab-configure">
+        <div class="field-row">
+          <div class="field">
+            <label>AI Assistant Name</label>
+            <input id="inp-name" type="text" placeholder="e.g. Maya, MediCare AI, Dr. Hope" />
+          </div>
+          <div class="field">
+            <label>Organization / Clinic Name</label>
+            <input id="inp-org" type="text" placeholder="MediCare Organization" />
+          </div>
         </div>
         <div class="field">
-          <label>Gemini API Key</label>
+          <label>Gemini API Key (online mode)</label>
           <input id="inp-key" type="password" placeholder="Paste Gemini API key..." />
         </div>
+        <div class="field">
+          <label>Agent system prompt (editable)</label>
+          <textarea id="inp-prompt"></textarea>
+        </div>
+        <div class="settings-actions">
+          <button class="btn btn-cancel" id="btn-cancel">Cancel</button>
+          <button class="btn btn-save"   id="btn-save">&#10003; Save &amp; Activate Agent</button>
+        </div>
       </div>
 
-      <div class="field">
-        <label>Agent system prompt (editable)</label>
-        <textarea id="inp-prompt"></textarea>
-      </div>
-
-      <div class="settings-actions">
-        <button class="btn btn-cancel" id="btn-cancel">Cancel</button>
-        <button class="btn btn-save"   id="btn-save">&#10003; Save &amp; Activate Agent</button>
+      <!-- Tab: Train AI -->
+      <div class="tab-panel" id="tab-train">
+        <div class="field">
+          <label>Question / Topic</label>
+          <input id="train-q" type="text" placeholder="e.g. What is metoprolol used for?" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Keywords (comma separated)</label>
+            <input id="train-kw" type="text" placeholder="metoprolol, beta blocker, heart" />
+          </div>
+          <div class="field">
+            <label>Category</label>
+            <select id="train-cat">
+              <option value="medicine">Medicine</option>
+              <option value="condition">Condition</option>
+              <option value="symptom">Symptom</option>
+              <option value="firstaid">First Aid</option>
+              <option value="wellness">Wellness</option>
+              <option value="safety">Safety</option>
+              <option value="emergency">Emergency</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Answer (supports **bold** and *italic*)</label>
+          <textarea id="train-a" placeholder="Write the answer. End with: Please consult your doctor or pharmacist..."></textarea>
+        </div>
+        <div class="settings-actions">
+          <button class="btn btn-cancel" id="btn-cancel-train">Cancel</button>
+          <button class="btn btn-train"  id="btn-add-train">+ Add to Knowledge Base</button>
+        </div>
+        <div class="kb-count" id="kb-count"></div>
+        <div id="kb-list"></div>
       </div>
 
     </div>
@@ -545,55 +722,83 @@
 
 <script>
   /* ── State ──────────────────────────────────────────────────────── */
-  const DEFAULT_PROMPT = org => `You are MediCare AI, a professional, friendly, and trustworthy medical and pharmaceutical assistant created by ${org}. You help patients and the general public with:
+  const DEFAULT_PROMPT = (name, org) =>
+`PERSONALITY & MOOD:
+Your personality is warm, gentle, and caring — like a kind nurse or family doctor who genuinely cares about every patient. You listen attentively, speak with compassion, and always make users feel safe and heard. You are patient, never rushed, and always reassuring.
 
-1. MEDICAL GUIDANCE: Understand symptoms, suggest possible conditions, explain when to see a doctor, describe common diseases, first-aid steps, and healthy lifestyle tips.
+ROLE & KNOWLEDGE:
+You are ${name}, a medical assistant from ${org}.
+You help patients understand symptoms, common illnesses, first aid, when to see a doctor, and healthy lifestyle tips.
+Never give a definitive diagnosis — always say "this could be" or "common causes include".
+For emergencies (chest pain, stroke, severe bleeding), immediately say: "Please call emergency services or go to your nearest hospital right away."
+Keep answers simple, jargon-free, and under 5 sentences.
+Always end with: "I'm an AI — please see a doctor for proper diagnosis and treatment."`;
 
-2. PHARMACEUTICAL INFO: Medicine name (generic & brand), what it treats, standard dosage, side effects, drug interactions, prescription requirements, storage, and what to do if a dose is missed.
-
-RULES:
-- Always clarify you are providing general information, not a prescription or diagnosis.
-- Never recommend a medicine without the user describing their condition first.
-- Always end responses with: "Please consult your doctor or pharmacist before starting, stopping, or changing any medication."
-- Flag dangerous drug interactions clearly.
-- If a user mentions severe symptoms, advise them to seek immediate medical attention.
-- Be accurate, concise, and non-alarmist.`;
-
-  // Values injected by server.js from .env (replaced at serve-time)
   const __ENV__ = window.__ENV__ || {};
-
-  let config    = { org: '', apiKey: '', systemPrompt: '' };
+  let config    = { name: '', org: '', apiKey: '', systemPrompt: '' };
   let activated = false;
   let history   = [];
 
   /* ── DOM refs ───────────────────────────────────────────────────── */
-  const overlay     = document.getElementById('overlay');
-  const inpOrg      = document.getElementById('inp-org');
-  const inpKey      = document.getElementById('inp-key');
-  const inpPrompt   = document.getElementById('inp-prompt');
-  const btnCancel   = document.getElementById('btn-cancel');
-  const btnSave     = document.getElementById('btn-save');
-  const btnSettings = document.getElementById('btn-settings');
-  const messages    = document.getElementById('messages');
-  const hint        = document.getElementById('hint');
-  const userInput   = document.getElementById('user-input');
-  const btnSend     = document.getElementById('btn-send');
-  const toast       = document.getElementById('toast');
-  const statusPill  = document.getElementById('status-pill');
+  const overlay      = document.getElementById('overlay');
+  const inpName      = document.getElementById('inp-name');
+  const inpOrg       = document.getElementById('inp-org');
+  const inpKey       = document.getElementById('inp-key');
+  const inpPrompt    = document.getElementById('inp-prompt');
+  const btnCancel    = document.getElementById('btn-cancel');
+  const btnSave      = document.getElementById('btn-save');
+  const btnSettings  = document.getElementById('btn-settings');
+  const messages     = document.getElementById('messages');
+  const hint         = document.getElementById('hint');
+  const userInput    = document.getElementById('user-input');
+  const btnSend      = document.getElementById('btn-send');
+  const toast        = document.getElementById('toast');
+  const statusPill   = document.getElementById('status-pill');
+  const kbList       = document.getElementById('kb-list');
+  const kbCount      = document.getElementById('kb-count');
+  const trainQ       = document.getElementById('train-q');
+  const trainKw      = document.getElementById('train-kw');
+  const trainA       = document.getElementById('train-a');
+  const trainCat     = document.getElementById('train-cat');
+  const btnAddTrain  = document.getElementById('btn-add-train');
+  const btnCancelTrain = document.getElementById('btn-cancel-train');
 
-  /* ── Init: pre-fill from .env ───────────────────────────────────── */
-  if (__ENV__.ORG_NAME)       inpOrg.value = __ENV__.ORG_NAME;
+  /* ── Init ───────────────────────────────────────────────────────── */
+  const defaultName      = __ENV__.AI_NAME    || 'MediCare AI';
+  const defaultOrg       = __ENV__.ORG_NAME   || 'your organization';
+  const defaultPoweredBy = __ENV__.POWERED_BY || 'Gemini';
+
+  inpName.value = defaultName;
+  if (__ENV__.ORG_NAME)       inpOrg.value = defaultOrg;
   if (__ENV__.GEMINI_API_KEY) inpKey.value = __ENV__.GEMINI_API_KEY;
-  inpPrompt.value = DEFAULT_PROMPT(__ENV__.ORG_NAME || 'your organization');
+  inpPrompt.value = DEFAULT_PROMPT(defaultName, defaultOrg);
+
+  // Apply branding to header immediately
+  document.getElementById('header-title').textContent    = `${defaultName} Agent`;
+  document.getElementById('header-subtitle').textContent = `Medical & Pharma Assistant • Powered by ${defaultPoweredBy}`;
+  document.title = `${defaultName} — Medical AI Agent`;
+
+  /* ── Tab switching ──────────────────────────────────────────────── */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'train') loadKBList();
+    });
+  });
 
   /* ── Settings open/close ────────────────────────────────────────── */
   btnSettings.addEventListener('click', openSettings);
   btnCancel.addEventListener('click', closeSettings);
+  btnCancelTrain.addEventListener('click', closeSettings);
 
   function openSettings() {
+    inpName.value   = config.name;
     inpOrg.value    = config.org;
     inpKey.value    = config.apiKey;
-    inpPrompt.value = config.systemPrompt || DEFAULT_PROMPT(config.org || 'your organization');
+    inpPrompt.value = config.systemPrompt || DEFAULT_PROMPT(config.name || 'MediCare AI', config.org || 'your organization');
     overlay.classList.remove('hidden');
   }
 
@@ -604,28 +809,51 @@ RULES:
 
   /* ── Save & Activate ────────────────────────────────────────────── */
   btnSave.addEventListener('click', () => {
+    const name   = inpName.value.trim() || 'MediCare AI';
     const org    = inpOrg.value.trim();
     const apiKey = inpKey.value.trim();
     const prompt = inpPrompt.value.trim();
 
     if (!org)    { showToast('Please enter your organization name.'); return; }
-    if (!apiKey) { showToast('Please paste your Gemini API key.'); return; }
     if (!prompt) { showToast('System prompt cannot be blank.'); return; }
 
-    config    = { org, apiKey, systemPrompt: prompt };
+    config    = { name, org, apiKey, systemPrompt: prompt };
     activated = true;
     history   = [];
+
+    // Update header live
+    document.getElementById('header-title').textContent    = `${name} Agent`;
+    document.getElementById('header-subtitle').textContent = `Medical & Pharma Assistant • Powered by ${defaultPoweredBy}`;
+    document.title = `${name} — Medical AI Agent`;
 
     overlay.classList.add('hidden');
     hint.classList.add('hidden');
     statusPill.classList.add('visible');
     userInput.disabled = false;
     btnSend.disabled   = false;
+    userInput.placeholder = `Chat with ${name}…`;
     userInput.focus();
 
     if (messages.querySelectorAll('.msg').length === 0) {
-      appendBotMessage(`Hello! I'm **MediCare AI**, your medical and pharmaceutical assistant from **${org}**. How can I help you today?`);
+      appendBotMessage(
+        `Hello there! 💙 I'm **${name}**, your caring medical assistant from **${org}**.\n\nI'm here to listen and help you with any health questions — whether it's understanding symptoms, medicines, first aid, or just knowing when to see a doctor.\n\nFeel free to share what's on your mind. How are you feeling today?`,
+        null
+      );
     }
+  });
+
+  /* Auto-regenerate prompt when name/org change (only if prompt hasn't been manually edited) */
+  let promptEdited = false;
+  inpPrompt.addEventListener('input', () => { promptEdited = true; });
+  [inpName, inpOrg].forEach(inp => {
+    inp.addEventListener('input', () => {
+      if (!promptEdited) {
+        inpPrompt.value = DEFAULT_PROMPT(
+          inpName.value.trim() || 'MediCare AI',
+          inpOrg.value.trim()  || 'your organization'
+        );
+      }
+    });
   });
 
   /* ── Chat ───────────────────────────────────────────────────────── */
@@ -648,13 +876,13 @@ RULES:
     const typingEl = appendTyping();
 
     try {
-      const reply = await callGemini();
+      const { reply, source } = await callAPI();
       typingEl.remove();
-      appendBotMessage(reply);
+      appendBotMessage(reply, source);
       history.push({ role: 'model', parts: [{ text: reply }] });
     } catch (err) {
       typingEl.remove();
-      appendBotMessage(`⚠️ ${parseGeminiError(err)}`);
+      appendBotMessage(`⚠️ ${err.message || 'Something went wrong. Please try again.'}`, null);
     } finally {
       btnSend.disabled   = false;
       userInput.disabled = false;
@@ -662,32 +890,74 @@ RULES:
     }
   }
 
-  /* ── Gemini API ─────────────────────────────────────────────────── */
-  async function callGemini() {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${config.apiKey}`;
-
-    const res = await fetch(url, {
+  /* ── API: routes through server.js (Gemini → local KB fallback) ── */
+  async function callAPI() {
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: config.systemPrompt }] },
-        contents: history,
-        generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-      })
+      body: JSON.stringify({ history, systemPrompt: config.systemPrompt })
     });
-
-    if (!res.ok) throw await res.json().catch(() => ({}));
-
-    const data = await res.json();
-    const candidate = data.candidates?.[0];
-    if (!candidate) throw new Error('No response from Gemini.');
-    return candidate.content.parts.map(p => p.text).join('');
+    if (!res.ok) throw new Error('Server error. Is node server.js running?');
+    return res.json();
   }
 
-  function parseGeminiError(err) {
-    if (err?.error?.message) return err.error.message;
-    if (err?.message)        return err.message;
-    return 'Failed to reach the Gemini API. Check your API key and network.';
+  /* ── Train AI ───────────────────────────────────────────────────── */
+  btnAddTrain.addEventListener('click', async () => {
+    const question = trainQ.value.trim();
+    const answer   = trainA.value.trim();
+    const keywords = trainKw.value.split(',').map(k => k.trim()).filter(Boolean);
+    const category = trainCat.value;
+
+    if (!question) { showToast('Please enter a question.'); return; }
+    if (!answer)   { showToast('Please enter an answer.'); return; }
+
+    btnAddTrain.disabled = true;
+    btnAddTrain.textContent = 'Saving…';
+
+    try {
+      const res = await fetch('/api/train', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question, answer, keywords, category })
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error);
+
+      trainQ.value = '';
+      trainA.value = '';
+      trainKw.value = '';
+      showToast(`✓ Added to knowledge base (${data.total} entries total)`);
+      loadKBList();
+    } catch (err) {
+      showToast('Failed to save: ' + (err.message || 'Server error'));
+    } finally {
+      btnAddTrain.disabled = false;
+      btnAddTrain.textContent = '+ Add to Knowledge Base';
+    }
+  });
+
+  async function loadKBList() {
+    try {
+      const res  = await fetch('/api/knowledge');
+      const kb   = await res.json();
+      kbCount.textContent = `${kb.length} entr${kb.length === 1 ? 'y' : 'ies'} in knowledge base`;
+      kbList.innerHTML = kb.slice().reverse().map(e => `
+        <div class="kb-item">
+          <span class="kb-item-q" title="${escHtml(e.question)}">${escHtml(e.question)}</span>
+          <span class="kb-item-cat">${escHtml(e.category || 'custom')}</span>
+          <button class="kb-item-del" data-id="${e.id}" title="Delete">✕</button>
+        </div>`).join('');
+
+      kbList.querySelectorAll('.kb-item-del').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          if (!confirm('Remove this entry from the knowledge base?')) return;
+          await fetch(`/api/train/${btn.dataset.id}`, { method: 'DELETE' });
+          loadKBList();
+        });
+      });
+    } catch {
+      kbCount.textContent = 'Could not load — is server.js running?';
+    }
   }
 
   /* ── Render helpers ─────────────────────────────────────────────── */
@@ -700,11 +970,20 @@ RULES:
     scrollBottom();
   }
 
-  function appendBotMessage(text) {
+  function appendBotMessage(text, source) {
+    const badge = source === 'gemini'
+      ? `<span class="badge badge-gemini">✦ Gemini AI</span>`
+      : source === 'local'
+      ? `<span class="badge badge-local">⚡ Offline KB</span>`
+      : '';
+
     const el = document.createElement('div');
     el.className = 'msg bot';
     el.innerHTML = `<div class="msg-avatar">🏥</div>
-                    <div class="msg-bubble">${formatMd(text)}</div>`;
+                    <div>
+                      <div class="msg-bubble">${formatMd(text)}</div>
+                      ${badge ? `<div class="msg-source">${badge}</div>` : ''}
+                    </div>`;
     messages.appendChild(el);
     scrollBottom();
   }
