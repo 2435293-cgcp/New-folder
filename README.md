@@ -1,29 +1,46 @@
-# MediCare AI Agent
+﻿# Ash AI Healthcare Assistant
 
-A professional medical and pharmaceutical AI assistant powered by Google Gemini. Built with plain HTML, CSS, and JavaScript — no frameworks, no build step.
+> **Smart Healthcare Guidance, Online or Offline.**
+
+A production-ready AI healthcare assistant powered by Google Gemini with a full offline fallback. Ash answers healthcare questions accurately whether you have an internet connection or not — falling back to a local medical knowledge base of 13 categories and 25+ medicines when Gemini is unavailable.
 
 ---
 
 ## Features
 
-- Medical guidance: symptoms, conditions, first-aid, and lifestyle tips
-- Pharmaceutical info: dosage, side effects, drug interactions, storage
-- Editable system prompt per organization
-- Multi-turn chat with conversation history
-- Settings auto-filled from `.env` — no manual key entry
-- Zero npm dependencies
+- **Offline-first** — searches the local medical KB before calling Gemini; works even when the API key is exhausted or internet is down
+- **Intelligent symptom matching** — Fuse.js fuzzy search with a custom stemmer, synonym map, and multi-word phrase detection
+- **Emergency detection** — 8 emergency types (heart attack, stroke, seizure, anaphylaxis, etc.) with combination alert logic
+- **Conversation memory** — node-cache keeps 30-minute sessions; remembers symptoms and context across messages
+- **Persistent custom KB** — lowdb lets you train Ash with your own Q&A entries; stored in `data/knowledge.json`
+- **Medicines database** — 25 common medicines searchable by name, generic name, or use case
+- **Dark / Light mode** — smooth theme toggle in the header
+- **Quick suggestion chips** — 10 health topic shortcuts on the home screen and input bar
+- **Friendly personality** — warm, empathetic responses with structured sections: Condition Summary → Causes → Home Care → Warning Signs → Next Steps
+- **Reliability rules** — never invents dosages, never claims diagnostic certainty, always shows disclaimer
 
 ---
 
 ## Project Structure
 
 ```
-├── medicare_agent.html   # Full UI (HTML + CSS + JS)
-├── server.js             # Node.js server — reads .env, injects values
-├── package.json
-├── .env                  # Your secrets (never commit this)
-├── .gitignore
-└── test_medicare_agent.py  # pytest test suite for the agent logic
+├── server.js                   # Express server — routes, lowdb, Gemini + offline logic
+├── services/
+│   ├── ai_service.js           # Gemini 2.0 Flash integration
+│   ├── offline_service.js      # Offline response builder with personality
+│   ├── symptom_matcher.js      # Fuse.js + stemmer + synonym map
+│   └── emergency_detector.js  # 8 emergency pattern sets + combination alerts
+├── data/
+│   ├── medical_kb.json         # 13-category medical knowledge base
+│   ├── medicines.json          # 25 common medicines with uses, warnings, dosage notes
+│   └── knowledge.json          # Custom trained Q&A entries (auto-created by lowdb)
+├── utils/
+│   └── cache.js                # node-cache session management (30-min TTL)
+├── public/
+│   └── index.html              # Full UI — glassmorphism, dark/light mode, chips, avatars
+├── .env                        # Your secrets (never commit this)
+├── .env.example                # Template for environment variables
+└── package.json
 ```
 
 ---
@@ -31,33 +48,35 @@ A professional medical and pharmaceutical AI assistant powered by Google Gemini.
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) v14 or higher
-- A Gemini API key → get one free at [Google AI Studio](https://aistudio.google.com/app/apikey)
+- A Gemini API key (optional — Ash works offline without one) → [Google AI Studio](https://aistudio.google.com/app/apikey)
 
 ---
 
 ## Getting Started
 
-### 1. Clone or download the project
+### 1. Install dependencies
 
 ```bash
-git clone <your-repo-url>
-cd medicare-ai-agent
+npm install
 ```
 
-### 2. Configure your `.env`
+### 2. Configure environment
 
-Open `.env` and replace the placeholder with your real values:
+Copy `.env.example` to `.env` and fill in your values:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
-ORG_NAME=MediCare Organization
+AI_NAME=Ash
+ORG_NAME=Ash AI Healthcare
 PORT=3000
 ```
+
+`GEMINI_API_KEY` is optional. If omitted, Ash runs fully offline using the local knowledge base.
 
 ### 3. Start the server
 
 ```bash
-node server.js
+npm start
 ```
 
 ### 4. Open in browser
@@ -66,46 +85,146 @@ node server.js
 http://localhost:3000
 ```
 
-The settings panel will be pre-filled with your `.env` values. Click **Save & Activate Agent** and start chatting.
+---
+
+## How It Works
+
+```
+User message
+     │
+     ▼
+┌─────────────────────┐
+│  Emergency detector  │  ← Checks for 8 critical emergencies first
+└─────────────────────┘
+     │
+     ▼
+┌─────────────────────┐
+│   Gemini AI (online) │  ← Tried first if API key is configured
+│   (Gemini 2.0 Flash) │
+└─────────────────────┘
+     │ (fails / no key)
+     ▼
+┌─────────────────────┐
+│  Offline service     │  ← medical_kb.json via Fuse.js symptom matcher
+│  (local KB)          │     🟢 Ash Offline Knowledge Base Active
+└─────────────────────┘
+     │ (low confidence)
+     ▼
+┌─────────────────────┐
+│  Custom KB (lowdb)   │  ← User-trained Q&A entries via the Train tab
+└─────────────────────┘
+     │
+     ▼
+  Response with badge (Gemini AI / Offline / Emergency)
+```
 
 ---
 
-## Running Tests
+## API Endpoints
 
-Requires Python 3 and pytest:
-
-```bash
-pip install pytest
-pytest test_medicare_agent.py -v
-```
-
-Test coverage includes agent initialization, activation, chat responses, system prompt updates, and the full save-and-activate workflow.
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/chat` | Main chat — Gemini → offline fallback |
+| `GET`  | `/api/status` | Server status, mode, KB stats |
+| `GET`  | `/api/knowledge` | List all custom KB entries |
+| `POST` | `/api/train` | Add a custom Q&A entry |
+| `DELETE` | `/api/train/:id` | Remove a custom Q&A entry |
+| `GET`  | `/api/medicines?q=` | Search medicines database |
+| `GET`  | `/api/search?q=` | Fuzzy search custom KB |
+| `GET`  | `/api/test-offline?q=` | Smoke-test offline symptom matching |
 
 ---
 
 ## Environment Variables
 
-| Variable          | Required | Description                        |
-|-------------------|----------|------------------------------------|
-| `GEMINI_API_KEY`  | Yes      | Your Google Gemini API key         |
-| `ORG_NAME`        | No       | Organization name shown in the UI  |
-| `PORT`            | No       | Server port (default: `3000`)      |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `GEMINI_API_KEY` | No | Google Gemini API key — omit for offline-only mode |
+| `AI_NAME` | No | Assistant name (default: `Ash`) |
+| `ORG_NAME` | No | Organization name shown in the UI (default: `Ash AI Healthcare`) |
+| `PORT` | No | Server port (default: `3000`) |
 
 ---
 
-## Usage Notes
+## Medical Knowledge Base
 
-- This tool provides **general medical and pharmaceutical information only** — not a substitute for professional medical advice.
-- Always consult a doctor or pharmacist before starting, stopping, or changing any medication.
-- The `.env` file contains sensitive credentials — it is excluded from git via `.gitignore`.
+Ash's offline KB covers 13 conditions:
+
+| Category | Icon |
+|----------|------|
+| Fever | 🌡️ |
+| Headache | 🤕 |
+| Cold & Flu | 🤧 |
+| Chest Pain | 💔 |
+| Hand Pain | ✋ |
+| Leg Pain | 🦵 |
+| Stomach Pain | 🤢 |
+| Diabetes | 🩸 |
+| Blood Pressure / Hypertension | 🩺 |
+| Dehydration | 💧 |
+| Muscle Cramps | 💪 |
+| First Aid | 🩹 |
+| Emergency Conditions | 🚨 |
+
+Each category includes: description, common causes, home care steps, warning signs, when to see a doctor, and follow-up questions.
+
+---
+
+## Emergency Detection
+
+Ash detects and immediately alerts for:
+
+- Heart Attack (chest pain, left arm pain, jaw pain + sweating combinations)
+- Stroke (FAST — Face, Arm, Speech, Time)
+- Breathing Emergency
+- Severe Bleeding
+- Loss of Consciousness
+- Seizure / Convulsion
+- Overdose / Poisoning
+- Anaphylaxis (severe allergic reaction)
+
+Emergency messages show as pulsing red alert cards with immediate action instructions.
+
+---
+
+## Training Ash
+
+Use the **🧠 Train AI** tab in settings to add custom Q&A entries:
+
+1. Enter a question / topic
+2. Add comma-separated keywords for better matching
+3. Select a category
+4. Write the answer
+5. Click **+ Add to Knowledge Base**
+
+Entries are stored in `data/knowledge.json` via lowdb and searched with Fuse.js when neither Gemini nor the built-in medical KB produce a confident answer.
 
 ---
 
 ## Tech Stack
 
-| Layer     | Technology                  |
-|-----------|-----------------------------|
-| UI        | HTML5, CSS3, Vanilla JS     |
-| AI Model  | Google Gemini 2.0 Flash     |
-| Server    | Node.js (built-in `http`)   |
-| Tests     | Python pytest               |
+| Layer | Technology |
+|-------|-----------|
+| UI | HTML5, CSS3 (Glassmorphism), Vanilla JS |
+| AI Model | Google Gemini 2.0 Flash |
+| Server | Node.js + Express |
+| Fuzzy Search | Fuse.js |
+| Local DB | lowdb (JSON file, synchronous) |
+| Session Cache | node-cache (30-min TTL) |
+| Offline KB | Custom medical JSON + stemmer |
+
+---
+
+## Reliability Rules
+
+- Never invents medicine dosages or specific treatment protocols
+- Never claims diagnostic certainty — always says "could be" or "common causes include"
+- Always shows a medical disclaimer on every response
+- Recommends professional care for any serious or persistent symptoms
+- Falls back to offline KB rather than giving an unrelated answer when Gemini fails
+
+---
+
+## Disclaimer
+
+Ash provides **general health information only** — not medical advice, diagnosis, or treatment. Always consult a qualified healthcare professional for any medical concerns.
