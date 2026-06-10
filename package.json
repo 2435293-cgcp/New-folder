@@ -1,0 +1,43 @@
+{
+  "name": "ash-ai-healthcare-assistant",
+  "version": "2.1.0",
+  "description": "Ash AI Healthcare Assistant — Offline-first medical guidance with Gemini AI fallback.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "fuse.js": "^7.4.1",
+    "lowdb": "^1.0.0",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "keywords": [
+    "healthcare",
+    "medical",
+    "ai",
+    "assistant",
+    "gemini",
+    "offline-first"
+  ],
+  "author": "Ash AI Healthcare",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2435293-cgcp/New-folder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/2435293-cgcp/New-folder/issues"
+  },
+  "homepage": "https://github.com/2435293-cgcp/New-folder#readme"
+}

@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment secrets
+.env
+
+# Python (existing venv)
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Runtime data
+data/knowledge.json
+
+# OS files
+.DS_Store
+Thumbs.db

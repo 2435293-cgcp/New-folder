@@ -1,0 +1,711 @@
+{
+  "version": "2.0",
+  "categories": {
+    "fever": {
+      "id": "fever",
+      "name": "Fever",
+      "icon": "🌡️",
+      "color": "#f59e0b",
+      "trigger_keywords": ["fever", "temperature", "hot", "chills", "febrile", "high temp", "pyrexia", "sweating fever", "burning up", "thermometer", "heat", "feverish", "hot forehead", "raised temperature"],
+      "description": "Fever is a temporary increase in body temperature, often caused by an illness. A temperature above 38°C (100.4°F) is generally considered a fever. It is the body's natural response to fighting infections.",
+      "common_causes": [
+        "Viral infections such as flu or common cold",
+        "Bacterial infections such as pneumonia, UTI, or strep throat",
+        "COVID-19 or other respiratory illnesses",
+        "Heat exhaustion or heat stroke",
+        "Inflammatory conditions or autoimmune disorders",
+        "Reaction to vaccinations or medications",
+        "Teething in infants"
+      ],
+      "symptoms": [
+        "High temperature above 38°C (100.4°F)",
+        "Chills and shivering",
+        "Sweating",
+        "Headache with fever",
+        "Body aches and muscle pain",
+        "Fatigue and weakness",
+        "Loss of appetite",
+        "Mild dehydration"
+      ],
+      "home_care": [
+        "Rest and get plenty of sleep",
+        "Stay hydrated — drink water, clear broths, or electrolyte drinks",
+        "Take paracetamol or ibuprofen as directed on the packaging",
+        "Use a cool (not cold) damp cloth on the forehead",
+        "Keep the room cool and comfortable",
+        "Wear light clothing and avoid heavy blankets",
+        "Monitor temperature regularly with a thermometer"
+      ],
+      "warning_signs": [
+        "Temperature above 39.5°C (103°F) in adults",
+        "Fever lasting more than 3 days",
+        "Stiff neck, sensitivity to light, or severe headache",
+        "Rash that does not fade when pressed",
+        "Difficulty breathing",
+        "Confusion or unusual drowsiness",
+        "Fever in infants under 3 months"
+      ],
+      "when_to_see_doctor": "See a doctor if your fever is above 39.5°C, lasts more than 3 days, or is accompanied by a stiff neck, rash, confusion, or difficulty breathing. Always seek urgent care for fever in infants under 3 months old.",
+      "follow_up_questions": [
+        "How long have you had the fever?",
+        "Do you have any other symptoms like rash or stiff neck?",
+        "Have you recently traveled abroad?"
+      ]
+    },
+    "headache": {
+      "id": "headache",
+      "name": "Headache",
+      "icon": "🤕",
+      "color": "#8b5cf6",
+      "trigger_keywords": ["headache", "migraine", "head pain", "head hurts", "throbbing head", "pounding head", "pressure in head", "head ache", "skull pain", "temple pain", "forehead pain", "cluster headache", "tension headache", "splitting headache"],
+      "description": "Headaches are one of the most common pain conditions worldwide. They range from mild tension headaches to severe migraines. Understanding the type and triggers can help with effective management.",
+      "common_causes": [
+        "Tension and stress",
+        "Dehydration",
+        "Eyestrain from screens or poor vision",
+        "Sinus congestion or infection",
+        "Migraine disorder",
+        "High blood pressure",
+        "Poor posture",
+        "Lack of sleep or oversleeping",
+        "Caffeine withdrawal"
+      ],
+      "symptoms": [
+        "Pain in the head, scalp, or neck",
+        "Throbbing or pulsing sensation",
+        "Pressure or tightening around the head",
+        "Sensitivity to light or sound",
+        "Nausea or vomiting with headache",
+        "Visual disturbances or aura",
+        "Pain that worsens with physical activity"
+      ],
+      "home_care": [
+        "Rest in a quiet, dark room",
+        "Drink plenty of water — dehydration is a common cause",
+        "Apply a cold or warm compress to the forehead or neck",
+        "Take over-the-counter pain relievers like paracetamol or ibuprofen",
+        "Practice relaxation techniques such as deep breathing or meditation",
+        "Limit screen time and take regular breaks",
+        "Maintain a regular sleep schedule"
+      ],
+      "warning_signs": [
+        "Sudden, severe 'thunderclap' headache — worst of your life",
+        "Headache with fever, stiff neck, or rash",
+        "Headache after head injury",
+        "Headache with confusion, vision changes, or weakness",
+        "Progressively worsening headache over days",
+        "Headache with one-sided weakness or speech problems"
+      ],
+      "when_to_see_doctor": "Seek immediate care for a sudden severe headache, headache after head trauma, or headache with neurological symptoms like confusion, weakness, or vision loss. See a doctor if headaches are frequent or interfering with daily life.",
+      "follow_up_questions": [
+        "How would you describe the pain — throbbing, pressure, or stabbing?",
+        "Do you have any visual changes, nausea, or sensitivity to light?",
+        "Have you had this type of headache before, or is this new?"
+      ]
+    },
+    "chest_pain": {
+      "id": "chest_pain",
+      "name": "Chest Pain",
+      "icon": "💔",
+      "color": "#ef4444",
+      "trigger_keywords": ["chest pain", "chest tightness", "chest pressure", "left arm pain", "jaw pain", "heart pain", "chest discomfort", "chest hurts", "tight chest", "squeezing chest", "chest heaviness", "chest burning", "heart hurts", "cardiac pain", "angina"],
+      "description": "Chest pain can range from a minor muscle strain to a serious cardiac emergency. It is critical to assess accompanying symptoms carefully. Any chest pain with shortness of breath, arm pain, or sweating must be treated as a medical emergency until proven otherwise.",
+      "common_causes": [
+        "Heart attack (myocardial infarction) — medical emergency",
+        "Angina (reduced blood flow to the heart)",
+        "Acid reflux or GERD (heartburn)",
+        "Muscle strain in the chest wall",
+        "Costochondritis (inflammation of rib cartilage)",
+        "Anxiety or panic attack",
+        "Pleurisy or pneumonia",
+        "Pulmonary embolism (blood clot in the lung)"
+      ],
+      "symptoms": [
+        "Pain, pressure, or tightness in the chest",
+        "Pain radiating to the left arm, jaw, neck, or back",
+        "Shortness of breath",
+        "Sweating and clamminess",
+        "Nausea or vomiting",
+        "Dizziness or lightheadedness",
+        "Palpitations or irregular heartbeat",
+        "Feeling of impending doom"
+      ],
+      "home_care": [
+        "If cardiac cause is suspected, call emergency services immediately — do not manage at home",
+        "Sit or lie down and rest in a comfortable position",
+        "Loosen tight clothing",
+        "Chew an aspirin (325mg) if not allergic and cardiac cause is suspected",
+        "For muscle strain: rest and apply ice or heat",
+        "For heartburn: antacids and avoid lying flat after eating",
+        "Stay calm and breathe slowly"
+      ],
+      "warning_signs": [
+        "Chest pain with left arm, jaw, or shoulder pain",
+        "Chest pain with sweating, nausea, or shortness of breath",
+        "Sudden severe chest pain",
+        "Chest pain in someone with known heart disease",
+        "Chest pain with rapid or irregular heartbeat",
+        "Chest pain with coughing up blood"
+      ],
+      "when_to_see_doctor": "Any chest pain that is new, severe, or accompanied by shortness of breath, sweating, or arm/jaw pain requires emergency evaluation immediately. Do not drive yourself — call emergency services.",
+      "follow_up_questions": [
+        "Does the pain spread to your arm, jaw, or shoulder?",
+        "Are you sweating, feeling sick, or short of breath?",
+        "Do you have a history of heart problems?"
+      ]
+    },
+    "hand_pain": {
+      "id": "hand_pain",
+      "name": "Hand Pain",
+      "icon": "✋",
+      "color": "#f97316",
+      "trigger_keywords": ["hand pain", "left hand pain", "right hand pain", "hand cramps", "wrist pain", "finger pain", "hand numbness", "tingling hand", "hand ache", "hand stiffness", "hand weakness", "knuckle pain", "palm pain", "hand spasm", "hand tightness", "hand swelling", "grip pain", "hand strain", "numb hand", "hand tingling", "hand circulation"],
+      "description": "Hand pain can arise from many causes — from muscle overuse and poor circulation to nerve compression and serious cardiac events. Left hand pain in particular deserves special attention as it can be an early warning sign of cardiac issues, especially when combined with chest discomfort, sweating, or shortness of breath.",
+      "common_causes": [
+        "Muscle strain or overuse from repetitive activities",
+        "Dehydration causing electrolyte imbalance and muscle cramps",
+        "Carpal tunnel syndrome (nerve compression at the wrist)",
+        "Arthritis — osteoarthritis or rheumatoid arthritis",
+        "Poor circulation or Raynaud's phenomenon",
+        "Nerve compression in the neck or shoulder (referred pain)",
+        "Cardiac referral — left arm and hand pain can be a sign of heart problems",
+        "Tendinitis or repetitive strain injury",
+        "Gout (uric acid crystals in joints)",
+        "Injury, sprain, or fracture"
+      ],
+      "symptoms": [
+        "Pain, aching, or cramping in the hand or fingers",
+        "Numbness or tingling (pins and needles)",
+        "Stiffness, especially in the morning",
+        "Weakness when gripping or holding objects",
+        "Swelling or redness in the joints",
+        "Coldness or colour change in the fingers",
+        "Muscle spasms in the hand or forearm",
+        "Pain that worsens with activity or particular positions"
+      ],
+      "home_care": [
+        "Rest the affected hand and avoid repetitive strain",
+        "Gently stretch and flex the fingers and wrist",
+        "Apply a warm compress to relax muscles and improve circulation",
+        "Stay well hydrated — dehydration commonly causes hand cramps",
+        "Take electrolytes (potassium, magnesium, calcium) if cramping is present",
+        "Use an ergonomic setup if the pain is work-related",
+        "Over-the-counter pain relievers such as ibuprofen for inflammation",
+        "For carpal tunnel: wear a wrist splint at night"
+      ],
+      "warning_signs": [
+        "Left hand pain combined with chest pain or pressure",
+        "Left hand numbness with sweating, nausea, or shortness of breath",
+        "Sudden severe pain with no clear cause",
+        "Hand pain with signs of poor circulation (blue/white fingers)",
+        "Pain after injury with visible deformity",
+        "Rapidly spreading swelling or redness suggesting infection"
+      ],
+      "when_to_see_doctor": "Seek emergency care immediately if left hand pain is accompanied by chest pain, sweating, jaw pain, or shortness of breath — these may indicate a heart attack. See a doctor for persistent pain, numbness, weakness, or if home care does not help within a few days.",
+      "follow_up_questions": [
+        "Is the pain in your left hand or right hand, and does it extend up your arm?",
+        "Do you also have chest pain, sweating, or shortness of breath?",
+        "Did the pain come on suddenly or gradually?"
+      ]
+    },
+    "leg_pain": {
+      "id": "leg_pain",
+      "name": "Leg Pain",
+      "icon": "🦵",
+      "color": "#10b981",
+      "trigger_keywords": ["leg pain", "leg cramps", "calf pain", "thigh pain", "knee pain", "ankle pain", "leg swelling", "leg numbness", "sore legs", "leg ache", "leg weakness", "shin pain", "hamstring pain", "leg stiffness", "leg tingling", "pain in legs", "legs hurt"],
+      "description": "Leg pain is extremely common and can result from muscle fatigue, poor circulation, nerve issues, or joint problems. Calf pain with swelling can occasionally indicate a deep vein thrombosis (DVT), which requires prompt medical assessment.",
+      "common_causes": [
+        "Muscle overuse, strain, or exercise soreness",
+        "Dehydration and electrolyte imbalance causing cramps",
+        "Varicose veins or poor circulation",
+        "Sciatica (nerve pain from the lower back)",
+        "Deep vein thrombosis (DVT) — blood clot",
+        "Arthritis affecting the knee or hip",
+        "Peripheral artery disease (PAD)",
+        "Restless legs syndrome"
+      ],
+      "symptoms": [
+        "Aching or cramping in the calf, thigh, or shin",
+        "Swelling of the lower leg or ankle",
+        "Numbness or tingling down the leg",
+        "Weakness or difficulty walking",
+        "Redness or warmth over the leg",
+        "Pain that worsens when walking (claudication)",
+        "Night cramps that wake you from sleep"
+      ],
+      "home_care": [
+        "Rest and elevate the leg",
+        "Apply ice for acute injury or heat for muscle cramps",
+        "Gently stretch the calf and thigh muscles",
+        "Stay hydrated and replenish electrolytes",
+        "Over-the-counter pain relief such as ibuprofen or paracetamol",
+        "Gentle massage for muscle cramps",
+        "Compression stockings for swelling or varicose veins"
+      ],
+      "warning_signs": [
+        "Calf pain with swelling, redness, and warmth — possible DVT",
+        "Sudden severe leg pain with pale or cold skin — possible arterial blockage",
+        "Leg pain with chest pain or shortness of breath",
+        "Numbness or weakness in both legs",
+        "Pain after recent long flight or bed rest (DVT risk)"
+      ],
+      "when_to_see_doctor": "Seek urgent care if you have calf pain with swelling, warmth, and redness (possible DVT). See a doctor for persistent leg pain, pain with walking, or any neurological symptoms like numbness or weakness.",
+      "follow_up_questions": [
+        "Where exactly is the pain — calf, thigh, knee, or all over?",
+        "Is the leg swollen, red, or warm to the touch?",
+        "Did the pain start after exercise, or has it been gradual?"
+      ]
+    },
+    "stomach_pain": {
+      "id": "stomach_pain",
+      "name": "Stomach Pain",
+      "icon": "🤢",
+      "color": "#84cc16",
+      "trigger_keywords": ["stomach pain", "abdominal pain", "belly pain", "nausea", "vomiting", "diarrhea", "constipation", "bloating", "tummy ache", "stomach cramp", "stomach ache", "gut pain", "indigestion", "stomach upset", "bowel pain", "intestinal pain", "gastric pain", "acid reflux", "heartburn"],
+      "description": "Stomach and abdominal pain can be caused by a wide variety of conditions, from mild indigestion to serious conditions requiring surgery. The location, nature, and accompanying symptoms help determine the likely cause.",
+      "common_causes": [
+        "Indigestion, acid reflux, or GERD",
+        "Gas, bloating, or irritable bowel syndrome (IBS)",
+        "Gastroenteritis (stomach flu) from infection",
+        "Food poisoning",
+        "Constipation",
+        "Appendicitis (pain in the lower right)",
+        "Gastric ulcer",
+        "Kidney stones or urinary tract infection",
+        "Menstrual cramps in women"
+      ],
+      "symptoms": [
+        "Cramping or sharp pain in the abdomen",
+        "Nausea or vomiting",
+        "Diarrhea or constipation",
+        "Bloating and gas",
+        "Loss of appetite",
+        "Fever with abdominal pain (may indicate infection)",
+        "Pain that worsens after eating"
+      ],
+      "home_care": [
+        "Rest and avoid eating until nausea settles",
+        "Stay hydrated with small sips of water or clear fluids",
+        "Eat bland foods such as toast, rice, or crackers",
+        "Avoid dairy, fatty, or spicy foods until better",
+        "Use a heating pad on the abdomen for cramps",
+        "Over-the-counter antacids for heartburn or acid reflux",
+        "Peppermint tea can help with gas and bloating"
+      ],
+      "warning_signs": [
+        "Severe sudden pain in the lower right abdomen (possible appendicitis)",
+        "Abdomen rigid or board-like to touch",
+        "Vomiting blood or black/tarry stools",
+        "Severe pain with high fever",
+        "Pain after abdominal injury",
+        "Signs of dehydration from prolonged vomiting or diarrhea"
+      ],
+      "when_to_see_doctor": "Seek emergency care for sudden severe abdominal pain, especially in the lower right. See a doctor promptly for pain lasting more than a few hours, accompanied by fever, vomiting blood, or if you cannot keep fluids down.",
+      "follow_up_questions": [
+        "Where exactly is the pain, and does it move anywhere?",
+        "Do you have any vomiting, diarrhea, or fever alongside the pain?",
+        "Did the pain start suddenly or come on gradually?"
+      ]
+    },
+    "diabetes": {
+      "id": "diabetes",
+      "name": "Diabetes",
+      "icon": "🩸",
+      "color": "#06b6d4",
+      "trigger_keywords": ["blood sugar", "glucose", "diabetes", "thirst excessive", "urination frequent", "fatigue diabetes", "blurred vision", "diabetic", "insulin", "hyperglycemia", "hypoglycemia", "high blood sugar", "low blood sugar", "sugar levels", "diabetic symptoms", "polyuria", "polydipsia", "type 1 diabetes", "type 2 diabetes"],
+      "description": "Diabetes is a chronic condition affecting how the body processes blood glucose. Type 1 is autoimmune, while Type 2 is largely lifestyle-related. Both require careful management. Uncontrolled blood sugar can cause serious complications.",
+      "common_causes": [
+        "Type 1: Autoimmune destruction of insulin-producing cells",
+        "Type 2: Insulin resistance due to lifestyle, obesity, genetics",
+        "Gestational diabetes during pregnancy",
+        "Pancreatic disease or injury",
+        "Hormonal disorders such as Cushing's syndrome",
+        "Certain medications (steroids, antipsychotics)"
+      ],
+      "symptoms": [
+        "Excessive thirst and dry mouth",
+        "Frequent urination, especially at night",
+        "Unexplained fatigue and weakness",
+        "Blurred vision",
+        "Slow-healing wounds or frequent infections",
+        "Unexplained weight loss (Type 1)",
+        "Tingling or numbness in hands and feet",
+        "Darkened skin in neck/armpits (acanthosis nigricans, Type 2)"
+      ],
+      "home_care": [
+        "Monitor blood sugar levels regularly as advised",
+        "Follow a balanced diet low in refined carbohydrates and sugar",
+        "Exercise regularly — helps improve insulin sensitivity",
+        "Take medications or insulin exactly as prescribed",
+        "Stay hydrated",
+        "Check feet daily for wounds, as healing is slower",
+        "Maintain healthy weight for Type 2 management"
+      ],
+      "warning_signs": [
+        "Blood sugar very high (above 15 mmol/L or 270 mg/dL) with nausea and vomiting",
+        "Blood sugar very low (below 4 mmol/L or 70 mg/dL) with confusion or shaking",
+        "Fruity breath, deep breathing, confusion — possible diabetic ketoacidosis (DKA)",
+        "Severe confusion or loss of consciousness",
+        "Chest pain or signs of diabetic emergency"
+      ],
+      "when_to_see_doctor": "Seek emergency care for signs of DKA (fruity breath, severe nausea, confusion) or severe hypoglycemia (shaking, confusion, unconsciousness). See your doctor regularly for diabetes management, and immediately if glucose is very high or very low.",
+      "follow_up_questions": [
+        "Do you have a known diagnosis of diabetes, and are you on medication?",
+        "What are your current blood sugar readings?",
+        "Are you experiencing excessive thirst, frequent urination, or blurred vision?"
+      ]
+    },
+    "blood_pressure": {
+      "id": "blood_pressure",
+      "name": "Blood Pressure",
+      "icon": "🩺",
+      "color": "#3b82f6",
+      "trigger_keywords": ["blood pressure", "hypertension", "dizziness bp", "headache bp", "high bp", "low bp", "fainting", "bp reading", "systolic", "diastolic", "high blood pressure", "low blood pressure", "hypotension", "dizzy standing", "pounding heart", "rushing blood", "blood pressure high", "blood pressure low", "bp too high", "bp too low"],
+      "description": "Blood pressure is the force of blood against artery walls. High blood pressure (hypertension) is above 140/90 mmHg and is a major risk factor for heart disease and stroke. Low blood pressure (hypotension) can cause dizziness and fainting.",
+      "common_causes": [
+        "High BP: Poor diet, high salt intake, sedentary lifestyle",
+        "High BP: Stress, obesity, smoking, alcohol",
+        "High BP: Kidney disease, hormonal disorders",
+        "Low BP: Dehydration, blood loss",
+        "Low BP: Heart problems or hormonal issues",
+        "Low BP: Medications (antihypertensives, diuretics)",
+        "Low BP: Prolonged bed rest or standing up quickly (orthostatic hypotension)"
+      ],
+      "symptoms": [
+        "High BP: Often no symptoms (the silent killer)",
+        "High BP: Headache, nosebleed, dizziness in severe cases",
+        "Low BP: Dizziness or lightheadedness when standing",
+        "Low BP: Fainting or near-fainting",
+        "Low BP: Blurred vision, fatigue, weakness",
+        "Low BP: Nausea, cold/clammy skin",
+        "Palpitations or feeling the heartbeat"
+      ],
+      "home_care": [
+        "For high BP: Reduce salt, alcohol, and processed food intake",
+        "For high BP: Exercise regularly and maintain healthy weight",
+        "For high BP: Manage stress with relaxation techniques",
+        "For high BP: Take prescribed medications consistently",
+        "For low BP: Increase fluid and salt intake (if advised)",
+        "For low BP: Rise slowly from sitting or lying positions",
+        "For low BP: Wear compression stockings if recommended"
+      ],
+      "warning_signs": [
+        "BP above 180/120 mmHg (hypertensive crisis)",
+        "Severe headache with very high BP",
+        "Chest pain or shortness of breath with high BP",
+        "BP below 90/60 with confusion or loss of consciousness",
+        "Sudden drop in BP with signs of shock"
+      ],
+      "when_to_see_doctor": "Seek emergency care if BP is above 180/120 mmHg, especially with chest pain or confusion. See a doctor regularly if you have hypertension. Seek same-day care if BP drops cause fainting or persistent symptoms.",
+      "follow_up_questions": [
+        "Do you know your current blood pressure reading?",
+        "Are you on any blood pressure medications?",
+        "Do you feel dizzy when you stand up, or is the dizziness constant?"
+      ]
+    },
+    "dehydration": {
+      "id": "dehydration",
+      "name": "Dehydration",
+      "icon": "💧",
+      "color": "#0ea5e9",
+      "trigger_keywords": ["dehydration", "thirst", "dry mouth", "dark urine", "dizziness thirst", "weakness thirst", "headache thirst", "not drinking enough", "dehydrated", "no water", "thirsty", "dry lips", "sunken eyes", "low urine", "no urine", "concentrated urine", "fluid loss", "overheating", "heat exhaustion dehydration"],
+      "description": "Dehydration occurs when the body loses more fluids than it takes in. Even mild dehydration can cause muscle cramps, headaches, and fatigue. Severe dehydration is a medical emergency, especially in children and the elderly.",
+      "common_causes": [
+        "Not drinking enough water throughout the day",
+        "Excessive sweating from heat or exercise",
+        "Vomiting and diarrhea causing rapid fluid loss",
+        "Fever increasing fluid needs",
+        "Diuretic medications or excessive caffeine/alcohol",
+        "Hot weather or vigorous physical activity",
+        "Electrolyte imbalance alongside fluid loss"
+      ],
+      "symptoms": [
+        "Increased thirst and dry mouth",
+        "Dark yellow or amber-coloured urine",
+        "Decreased urination",
+        "Fatigue, dizziness, or lightheadedness",
+        "Headache",
+        "Muscle cramps, especially in the hands and legs",
+        "Dry skin and lips",
+        "Confusion or irritability in severe cases"
+      ],
+      "home_care": [
+        "Drink water steadily — aim for 8 glasses per day in normal conditions",
+        "Use oral rehydration salts (ORS) if vomiting or diarrhea is present",
+        "Sports drinks or electrolyte drinks to replenish minerals",
+        "Eat water-rich foods such as cucumber, watermelon, or oranges",
+        "Rest in a cool environment if overheated",
+        "Avoid alcohol and caffeine which increase fluid loss",
+        "Increase intake if exercising, sweating heavily, or in hot weather"
+      ],
+      "warning_signs": [
+        "Confusion or extreme irritability",
+        "No urination for 8 or more hours",
+        "Rapid heartbeat with very low blood pressure",
+        "Sunken eyes or very dry skin that does not bounce back",
+        "Fainting or loss of consciousness",
+        "Severe muscle cramps that do not resolve with hydration"
+      ],
+      "when_to_see_doctor": "Seek emergency care for severe dehydration with confusion, rapid heartbeat, fainting, or no urination. See a doctor if unable to keep fluids down, if dehydration is in a young child or elderly person, or if symptoms do not improve with oral rehydration.",
+      "follow_up_questions": [
+        "How much water have you had today, and do you feel thirsty?",
+        "Have you had vomiting, diarrhea, or excessive sweating recently?",
+        "Are you experiencing muscle cramps or dizziness alongside the thirst?"
+      ]
+    },
+    "muscle_cramps": {
+      "id": "muscle_cramps",
+      "name": "Muscle Cramps",
+      "icon": "💪",
+      "color": "#a855f7",
+      "trigger_keywords": ["cramps", "muscle cramp", "spasm", "muscle pain", "charley horse", "leg cramp", "hand cramp", "muscle tightness", "muscle spasm", "cramping", "muscle knot", "cramp in leg", "cramp in hand", "stomach cramp", "muscle seized", "seized muscle", "stiff muscle", "muscle locking", "involuntary contraction", "night cramps", "exercise cramps", "cramp after exercise"],
+      "description": "Muscle cramps are sudden, involuntary contractions of one or more muscles. They can be intensely painful and are very common. Most cramps are benign and related to dehydration, electrolyte imbalance, overuse, or poor circulation — but persistent or severe cramps should be evaluated.",
+      "common_causes": [
+        "Dehydration — reduced fluid causes impaired muscle function",
+        "Electrolyte imbalance — low potassium, magnesium, calcium, or sodium",
+        "Overuse or prolonged exercise without adequate stretching",
+        "Poor blood circulation to the muscles",
+        "Mineral deficiency, especially in people with poor diet",
+        "Prolonged sitting or standing in one position",
+        "Certain medications (diuretics, statins)",
+        "Nerve compression from spinal conditions",
+        "Liver disease (in severe cases)"
+      ],
+      "symptoms": [
+        "Sudden sharp or gripping pain in a muscle",
+        "Visible or palpable muscle hardness or knot",
+        "Temporary inability to use the affected muscle",
+        "Cramping that worsens during or after exercise",
+        "Persistent soreness after cramp resolves",
+        "Twitching or spasms before or after the main cramp",
+        "Cramps most common in calves, feet, and hands",
+        "Night-time cramps that wake you from sleep"
+      ],
+      "home_care": [
+        "Stretch the affected muscle gently and hold for 30 seconds",
+        "Hydrate immediately — drink water or an electrolyte drink",
+        "Take electrolytes: potassium (bananas, avocado), magnesium (nuts, dark leafy greens), calcium (dairy, leafy greens)",
+        "Apply a warm compress or hot water bottle to relax the muscle",
+        "Gentle massage to the cramping area",
+        "For cold cramps, apply an ice pack to reduce inflammation",
+        "Rest the muscle and avoid overuse",
+        "Ensure adequate warm-up and cool-down around exercise"
+      ],
+      "warning_signs": [
+        "Muscle cramps with left hand or arm pain AND chest pain (cardiac alert)",
+        "Severe cramps with confusion, rapid heartbeat, or fainting",
+        "Cramps that do not resolve with stretching and hydration",
+        "Frequent cramps with weakness or significant fatigue",
+        "Cramps in someone with liver disease or on dialysis",
+        "Cramps following significant fluid loss or illness"
+      ],
+      "when_to_see_doctor": "See a doctor if cramps are frequent, severe, or not relieved by stretching and hydration. Seek urgent care if cramps occur alongside chest pain, left arm pain, or sweating — this combination may indicate a cardiac event. Also seek care if cramps are associated with significant weakness or follow illness.",
+      "follow_up_questions": [
+        "How long have you been experiencing the cramps, and where are they located?",
+        "Have you been drinking enough water and eating well today?",
+        "Do you also have any chest pain, shortness of breath, or dizziness?"
+      ]
+    },
+    "cold_flu": {
+      "id": "cold_flu",
+      "name": "Cold & Flu",
+      "icon": "🤧",
+      "color": "#64748b",
+      "trigger_keywords": ["cold", "flu", "cough", "runny nose", "sore throat", "sneezing", "congestion", "influenza", "common cold", "stuffy nose", "blocked nose", "throat pain", "throat sore", "sniffles", "coughing", "mucus", "phlegm", "viral illness", "respiratory infection", "nasal congestion"],
+      "description": "The common cold and influenza (flu) are viral respiratory illnesses. Colds are generally milder and mainly affect the nose and throat, while flu tends to come on suddenly and includes fever, body aches, and significant fatigue. Both are highly contagious.",
+      "common_causes": [
+        "Rhinoviruses — the most common cause of colds",
+        "Influenza A and B viruses",
+        "COVID-19 and other coronaviruses",
+        "Respiratory syncytial virus (RSV)",
+        "Adenovirus and parainfluenza viruses",
+        "Weakened immune system",
+        "Exposure to infected individuals"
+      ],
+      "symptoms": [
+        "Runny or stuffy nose",
+        "Sore throat",
+        "Coughing and sneezing",
+        "Mild to moderate fever (more common in flu)",
+        "Fatigue and body aches (more prominent in flu)",
+        "Headache",
+        "Loss of smell or taste",
+        "Chills and sweating with fever"
+      ],
+      "home_care": [
+        "Rest at home and avoid spreading to others",
+        "Stay well hydrated — water, hot tea, or broth",
+        "Honey and lemon drink for sore throat and cough",
+        "Use saline nasal spray or rinse for congestion",
+        "Paracetamol or ibuprofen for fever and aches",
+        "Steam inhalation to relieve congestion",
+        "Throat lozenges for sore throat",
+        "Elevate your head while sleeping to ease congestion"
+      ],
+      "warning_signs": [
+        "Difficulty breathing or rapid breathing",
+        "High persistent fever above 39.5°C for more than 3 days",
+        "Worsening symptoms after initial improvement (secondary infection)",
+        "Chest pain or persistent coughing up blood",
+        "Severe headache with stiff neck",
+        "Confusion or difficulty waking"
+      ],
+      "when_to_see_doctor": "See a doctor if symptoms are severe, worsen after 7-10 days, or if you have difficulty breathing, high persistent fever, or are in a high-risk group (elderly, immunocompromised, pregnant). Antiviral medications may help if flu is diagnosed early.",
+      "follow_up_questions": [
+        "Do you have a fever, and have you measured your temperature?",
+        "How long have you had these symptoms, and are they getting worse?",
+        "Do you have any difficulty breathing or chest pain?"
+      ]
+    },
+    "first_aid": {
+      "id": "first_aid",
+      "name": "First Aid",
+      "icon": "🩹",
+      "color": "#22c55e",
+      "trigger_keywords": ["cut", "wound", "burn", "bleeding", "fracture", "sprain", "bruise", "first aid", "injury", "scratch", "laceration", "graze", "broken bone", "twisted ankle", "blister", "insect bite", "minor injury", "skin cut", "open wound", "glass cut", "deep cut", "minor burn", "scald"],
+      "description": "First aid covers the immediate care given to an injured or ill person before professional medical help is available. Proper first aid can prevent conditions from worsening and can sometimes save lives.",
+      "common_causes": [
+        "Cuts and lacerations from sharp objects",
+        "Burns from heat, chemicals, or electricity",
+        "Sprains and strains from sudden movements",
+        "Fractures from falls or impacts",
+        "Bruising from blunt trauma",
+        "Insect bites or stings",
+        "Choking on food or objects"
+      ],
+      "symptoms": [
+        "Visible wound, cut, or abrasion",
+        "Bleeding — minor to severe",
+        "Swelling and bruising at the injury site",
+        "Pain and tenderness",
+        "Redness, blistering, or charring with burns",
+        "Inability to move a limb normally (possible fracture)",
+        "Signs of infection: pus, warmth, increased redness after a few days"
+      ],
+      "home_care": [
+        "Cuts: Clean with cool running water, apply pressure to stop bleeding, cover with sterile bandage",
+        "Burns: Cool under running water for 20 minutes, do not use ice or butter",
+        "Sprains: Use RICE — Rest, Ice, Compression, Elevation",
+        "Bruises: Apply ice pack wrapped in cloth for 15-20 minutes",
+        "Nosebleed: Sit forward, pinch soft part of nose for 10-15 minutes",
+        "Insect stings: Remove stinger, apply cold compress",
+        "Choking (adult): Encourage coughing, then back blows and abdominal thrusts"
+      ],
+      "warning_signs": [
+        "Heavy bleeding that does not stop after 15 minutes of pressure",
+        "Deep wound exposing bone, tendon, or tissue",
+        "Burns larger than 5cm or on the face, hands, or genitals",
+        "Signs of fracture with visible deformity or complete inability to move",
+        "Signs of infection — pus, red streaks, worsening swelling after 48 hours",
+        "Severe allergic reaction to an insect sting"
+      ],
+      "when_to_see_doctor": "Seek emergency care for severe bleeding, deep wounds, large burns, suspected fractures, or signs of anaphylaxis. Visit a doctor or urgent care clinic for wounds that may need stitches, signs of infection, or burns to sensitive areas.",
+      "follow_up_questions": [
+        "What type of injury occurred — cut, burn, sprain, or something else?",
+        "Is the bleeding controlled, or is it still heavy?",
+        "Is there any chance of a broken bone, or can you move the area?"
+      ]
+    },
+    "emergency": {
+      "id": "emergency",
+      "name": "Medical Emergency",
+      "icon": "🚨",
+      "color": "#dc2626",
+      "trigger_keywords": ["unconscious", "not breathing", "heart attack", "stroke", "severe bleeding", "anaphylaxis", "seizure", "overdose", "emergency", "call 999", "call 911", "call 112", "not responding", "collapsed", "stopped breathing", "can't breathe", "choking", "blue lips", "turning blue", "passed out", "fitting", "convulsing", "allergic reaction severe", "throat closing"],
+      "description": "A medical emergency is a sudden, serious injury or illness that threatens a person's life or could cause long-term harm if not treated immediately. Recognising the signs and acting quickly — including calling emergency services — can save lives.",
+      "common_causes": [
+        "Cardiac arrest or heart attack",
+        "Stroke or transient ischaemic attack (TIA)",
+        "Severe allergic reaction (anaphylaxis)",
+        "Serious trauma, accident, or injury",
+        "Drug overdose or poisoning",
+        "Diabetic emergency (DKA or severe hypoglycemia)",
+        "Severe asthma attack or respiratory failure",
+        "Seizure or status epilepticus"
+      ],
+      "symptoms": [
+        "Unconsciousness or unresponsiveness",
+        "Absent or abnormal breathing",
+        "Chest pain with sweating and arm pain",
+        "Face drooping, arm weakness, speech difficulties (stroke)",
+        "Throat swelling, hives, difficulty breathing (anaphylaxis)",
+        "Uncontrolled seizures",
+        "Heavy uncontrolled bleeding",
+        "Signs of overdose — pinpoint pupils, limp body, slow breathing"
+      ],
+      "home_care": [
+        "Call emergency services (911, 112, or 999) immediately",
+        "Stay on the line with the dispatcher and follow their instructions",
+        "For cardiac arrest: begin CPR — 30 chest compressions, 2 rescue breaths",
+        "For anaphylaxis: use EpiPen if available, then call emergency services",
+        "For seizure: protect from injury, do not restrain or put anything in the mouth",
+        "For severe bleeding: apply firm direct pressure",
+        "For unconscious but breathing: place in recovery position",
+        "Do not give food or water to an unconscious person"
+      ],
+      "warning_signs": [
+        "Any loss of consciousness",
+        "Absent or gasping breathing",
+        "No pulse or very weak pulse",
+        "Uncontrolled heavy bleeding",
+        "Sudden confusion, paralysis, or inability to speak"
+      ],
+      "when_to_see_doctor": "Call emergency services (911/112/999) immediately. Do not wait or drive to hospital — paramedics can begin treatment en route.",
+      "follow_up_questions": [
+        "Is the person conscious and breathing?",
+        "Have you called emergency services?",
+        "What happened — was there a collapse, injury, or sudden illness?"
+      ]
+    }
+  },
+  "symptom_map": {
+    "fever": ["fever", "temperature", "feverish", "burning up", "high temp", "pyrexia"],
+    "headache": ["headache", "migraine", "head pain", "throbbing head", "head ache"],
+    "chest_pain": ["chest pain", "chest tightness", "chest pressure", "left arm pain", "jaw pain", "heart pain", "chest discomfort", "tight chest", "squeezing chest"],
+    "hand_pain": ["hand pain", "left hand pain", "right hand pain", "hand cramps", "wrist pain", "finger pain", "hand numbness", "tingling hand", "hand stiffness", "numb hand", "hand weakness", "hand spasm"],
+    "leg_pain": ["leg pain", "leg cramps", "calf pain", "thigh pain", "knee pain", "ankle pain", "leg swelling", "leg numbness", "sore legs", "leg ache"],
+    "stomach_pain": ["stomach pain", "abdominal pain", "belly pain", "nausea", "vomiting", "diarrhea", "constipation", "bloating", "tummy ache", "stomach cramp", "sick stomach", "upset stomach", "feel sick", "stomach pain", "gut pain", "bowel pain", "indigestion", "heartburn", "acid reflux", "feel nauseous", "queasy", "loose stool", "loose motion"],
+    "diabetes": ["blood sugar", "glucose", "diabetes", "thirst excessive", "urination frequent", "fatigue diabetes", "blurred vision", "diabetic", "insulin"],
+    "blood_pressure": ["blood pressure", "hypertension", "dizziness bp", "headache bp", "high bp", "low bp", "fainting", "dizzy standing", "dizzy", "dizziness", "vertigo", "lightheaded", "light headed", "spinning", "room spinning", "feel faint", "nearly fainted"],
+    "dehydration": ["dehydration", "thirst", "dry mouth", "dark urine", "dizziness thirst", "weakness thirst", "headache thirst", "dehydrated", "not drinking enough"],
+    "muscle_cramps": ["cramps", "muscle cramp", "spasm", "muscle pain", "charley horse", "leg cramp", "hand cramp", "muscle tightness", "muscle spasm", "cramping", "night cramps", "exercise cramps"],
+    "cold_flu": ["cold", "flu", "cough", "runny nose", "sore throat", "sneezing", "congestion", "influenza", "common cold", "stuffy nose", "throat", "hoarse", "hoarseness", "phlegm", "mucus", "throat pain", "pain throat", "throat hurt", "throat ache", "throat discomfort", "swallowing pain", "scratchy throat", "nasal drip", "blocked nose", "body aches flu", "chills flu"],
+    "first_aid": ["cut", "wound", "burn", "bleeding", "fracture", "sprain", "bruise", "first aid", "injury", "scratch", "laceration"],
+    "emergency": ["unconscious", "not breathing", "heart attack", "stroke", "severe bleeding", "anaphylaxis", "seizure", "overdose", "emergency", "collapsed", "stopped breathing"]
+  },
+  "emergency_combinations": [
+    {
+      "id": "heart_attack",
+      "name": "Possible Heart Attack",
+      "symptom_patterns": ["chest pain", "left arm pain", "jaw pain", "left hand pain", "sweating", "shortness of breath"],
+      "required_count": 2,
+      "message": "These symptoms together — especially chest pain, left arm/hand pain, sweating — can be signs of a heart attack.",
+      "action": "Call emergency services (911/112/999) immediately. Do not drive yourself. Chew an aspirin (325mg) if not allergic while waiting for help."
+    },
+    {
+      "id": "stroke",
+      "name": "Possible Stroke (FAST)",
+      "symptom_patterns": ["face drooping", "arm weakness", "speech difficulty", "sudden confusion", "sudden headache", "vision loss", "facial numbness"],
+      "required_count": 1,
+      "message": "These symptoms may indicate a stroke. Use FAST: Face drooping, Arm weakness, Speech difficulty, Time to call.",
+      "action": "Call emergency services immediately. Note the exact time symptoms started."
+    },
+    {
+      "id": "breathing_emergency",
+      "name": "Breathing Emergency",
+      "symptom_patterns": ["difficulty breathing", "cannot breathe", "choking", "severe asthma", "blue lips", "cyanosis"],
+      "required_count": 1,
+      "message": "Severe difficulty breathing is a medical emergency.",
+      "action": "Call emergency services immediately."
+    },
+    {
+      "id": "anaphylaxis",
+      "name": "Severe Allergic Reaction",
+      "symptom_patterns": ["throat swelling", "anaphylaxis", "severe allergy", "cannot swallow", "tongue swelling"],
+      "required_count": 1,
+      "message": "Throat swelling can block your airway — this is life-threatening.",
+      "action": "Use EpiPen if available. Call emergency services immediately."
+    }
+  ]
+}
